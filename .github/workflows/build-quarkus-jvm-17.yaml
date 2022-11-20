@@ -5,6 +5,13 @@ on:
       isNative:
         type: boolean
         required: true
+    outputs:
+      version:
+        description: "The artifacts next version"
+        value: ${{ jobs.build.outputs.version }}
+      tag:
+        description: "The artifacts next tag"
+        value: ${{ jobs.build.outputs.tag }}
 
 jobs:
   build:
