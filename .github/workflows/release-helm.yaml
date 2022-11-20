@@ -2,6 +2,9 @@ name: release-image-helm
 on:
   workflow_call:
     inputs:
+      service_name:
+        type: string
+        required: true
       version:
         type: string
         required: true
@@ -27,9 +30,6 @@ jobs:
           name: built-application
           path: target/quarkus-app
 
-      - name: Get repository name
-        run: echo "REPOSITORY_NAME=data-avm-service" >> $GITHUB_ENV
-
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v2
         with:
@@ -43,17 +43,17 @@ jobs:
           context: .
           file: src/main/docker/Dockerfile.jvm
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ inputs.registry }}/${{ github.repository }}:${{ inputs.tag }}
+          tags: ${{ inputs.registry }}/${{ inputs.service_name }}:${{ inputs.tag }}
 
       - name: Update image tag in helm values
         uses: mikefarah/yq@master
         with:
-          cmd: yq -i '.image.tag = "${{ inputs.tag }}"' charts/${{ env.REPOSITORY_NAME }}/values.yaml
+          cmd: yq -i '.image.tag = "${{ inputs.tag }}"' charts/${{ inputs.service_name }}/values.yaml
 
       - name: Update version in helm chart
         uses: mikefarah/yq@master
         with:
-          cmd: yq -i '.version = "${{ inputs.version }}"' charts/${{ env.REPOSITORY_NAME }}/Chart.yaml
+          cmd: yq -i '.version = "${{ inputs.version }}"' charts/${{ inputs.service_name }}/Chart.yaml
 
       - name: Release helm chart
         uses: stefanprodan/helm-gh-pages@master
