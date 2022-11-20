@@ -2,9 +2,6 @@ name: release-image-helm
 on:
   workflow_call:
     inputs:
-      service_name:
-        type: string
-        required: true
       version:
         type: string
         required: true
@@ -43,17 +40,17 @@ jobs:
           context: .
           file: src/main/docker/Dockerfile.jvm
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ inputs.registry }}/${{ inputs.service_name }}:${{ inputs.tag }}
+          tags: ${{ inputs.registry }}/${{ github.repository }}:${{ inputs.tag }}
 
       - name: Update image tag in helm values
         uses: mikefarah/yq@master
         with:
-          cmd: yq -i '.image.tag = "${{ inputs.tag }}"' charts/${{ inputs.service_name }}/values.yaml
+          cmd: yq -i '.image.tag = "${{ inputs.tag }}"' charts/${{ github.event.repository.name }}/values.yaml
 
       - name: Update version in helm chart
         uses: mikefarah/yq@master
         with:
-          cmd: yq -i '.version = "${{ inputs.version }}"' charts/${{ inputs.service_name }}/Chart.yaml
+          cmd: yq -i '.version = "${{ inputs.version }}"' charts/${{ github.event.repository.name }}/Chart.yaml
 
       - name: Release helm chart
         uses: stefanprodan/helm-gh-pages@master
