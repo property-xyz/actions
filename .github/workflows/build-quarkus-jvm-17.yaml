@@ -36,7 +36,7 @@ jobs:
       - name: Build application
         run: |
           ./mvnw  versions:set -DnewVersion=${{ steps.tag_version.outputs.new_version }}
-          if [[ ${{ inputs.isNative }} ]]; then
+          if [[ ${{ inputs.isNative }} = true ]]; then
            ./mvnw clean package -Dnative -Dquarkus.native.container-build=true
           else
            ./mvnw clean package
