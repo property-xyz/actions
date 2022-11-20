@@ -17,6 +17,9 @@ jobs:
       contents: write
 
     steps:
+      - name: print version
+        run: echo ${{ inputs.version }}
+
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
@@ -34,7 +37,7 @@ jobs:
           token: ${{ secrets.GH_ORG_TOKEN }}
           title: Promote ${{ github.event.repository.name }} to version v${{ inputs.version }}
           commit-message: >-
-            chore: promote ${{ github.event.repository.name }} to version  $${{ inputs.version }}
+            chore: promote ${{ github.event.repository.name }} to version v${{ inputs.version }}
           committer: GitHub <noreply@github.com>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           branch: pr-${{ github.event.repository.name }}-${{ inputs.version }}
