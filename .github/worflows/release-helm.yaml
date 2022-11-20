@@ -11,6 +11,8 @@ on:
     secrets:
       GH_ORG_TOKEN:
         required: true
+env:
+  REGISTRY: ghcr.io
 jobs:
   release:
     runs-on: ubuntu-latest
