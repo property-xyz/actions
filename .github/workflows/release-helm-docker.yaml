@@ -2,6 +2,10 @@ name: release-image-helm
 on:
   workflow_call:
     inputs:
+      isNative:
+        type: boolean
+        required: true
+        default: true
       version:
         type: string
         required: true
@@ -40,11 +44,19 @@ jobs:
           username: ${{ inputs.registry_username }}
           password: ${{ secrets.XYZ_BOT_TOKEN }}
 
+      - name: Set Docker file path
+        run: |
+          if [[ ${{ inputs.isNative }} = true ]]; then
+           echo "DOCKERFILE_PATH=src/main/docker/Dockerfile.native-distroless" >> $GITHUB_ENV
+          else
+           echo "DOCKERFILE_PATH=src/main/docker/Dockerfile.jvm" >> $GITHUB_ENV
+          fi
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: src/main/docker/Dockerfile.jvm
+          file: ${{ env.DOCKERFILE_PATH }}
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ inputs.registry }}/${{ github.repository }}:${{ inputs.tag }}
 
