@@ -4,7 +4,7 @@ on:
     inputs:
       isNative:
         type: boolean
-        required: false
+        required: true
         default: true
       version:
         type: string
@@ -47,7 +47,7 @@ jobs:
       - name: Set Docker file path
         run: |
           if [[ ${{ inputs.isNative }} = true ]]; then
-           echo "DOCKERFILE_PATH=src/main/docker/Dockerfile.native-distroless" >> $GITHUB_ENV
+           echo "DOCKERFILE_PATH=src/main/docker/Dockerfile.native" >> $GITHUB_ENV
           else
            echo "DOCKERFILE_PATH=src/main/docker/Dockerfile.jvm" >> $GITHUB_ENV
           fi
