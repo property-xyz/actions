@@ -53,6 +53,11 @@ jobs:
         with:
           cmd: yq -i '.image.tag = "${{ inputs.tag }}"' charts/${{ github.event.repository.name }}/values.yaml
 
+      - name: Update repository  in helm values
+        uses: mikefarah/yq@master
+        with:
+          cmd: yq -i '.image.repository = "${{ inputs.registry }}/${{ github.repository }}"' charts/${{ github.event.repository.name }}/values.yaml
+
       - name: Update version in helm chart
         uses: mikefarah/yq@master
         with:
