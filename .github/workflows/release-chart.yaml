@@ -4,7 +4,7 @@ on:
     inputs:
       isNative:
         type: boolean
-        required: true
+        required: false
         default: true
       version:
         type: string
