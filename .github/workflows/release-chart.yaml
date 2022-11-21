@@ -35,7 +35,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: built-application
-          path: target/quarkus-app
+          path: target/
 
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v2

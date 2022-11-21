@@ -60,4 +60,4 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: built-application
-          path: target/quarkus-app
+          path: target/
