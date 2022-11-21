@@ -10,12 +10,12 @@ on:
         required: true
       registry_uri:
         type: string
+        default: 'ghcr.io'
         required: false
-        default: ghcr.io
       registry_username:
         type: string
+        default: 'property-xyz-bot'
         required: false
-        default: property-xyz-bot
     secrets:
       GH_ORG_TOKEN:
         required: true
@@ -24,6 +24,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout repository
         uses: actions/checkout@v3
 
