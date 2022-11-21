@@ -11,11 +11,11 @@ on:
       registry_uri:
         type: string
         default: 'ghcr.io'
-        required: false
+        required: true
       registry_username:
         type: string
         default: 'property-xyz-bot'
-        required: false
+        required: true
     secrets:
       GH_ORG_TOKEN:
         required: true
