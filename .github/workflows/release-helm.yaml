@@ -10,10 +10,12 @@ on:
         required: true
       registry_uri:
         type: string
-        required: true
+        default: 'ghcr.io'
+        required: false
       registry_username:
         type: string
-        required: true
+        default: 'property-xyz-bot'
+        required: false
     secrets:
       GH_ORG_TOKEN:
         required: true
@@ -44,7 +46,7 @@ jobs:
           context: .
           file: src/main/docker/Dockerfile.jvm
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ inputs.registry }}/${{ github.repository }}:${{ inputs.tag }}
+          tags: ${{ inputs.registry_uri }}/${{ github.repository }}:${{ inputs.tag }}
 
       - name: Update image tag in helm values
         uses: mikefarah/yq@master
