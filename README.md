@@ -23,12 +23,11 @@ jobs:
     secrets: inherit
     with:
       isNative: false
-  docker-helm-release:
+  docker-helm:
     needs: mvn
     uses: property-xyz/actions/.github/workflows/release-helm.yaml@main
     secrets: inherit
     with:
-      registry: ghcr.io
       version: ${{ needs.mvn.outputs.version }}
       tag: ${{ needs.mvn.outputs.tag }}
   argocd:
