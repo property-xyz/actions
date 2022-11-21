@@ -19,7 +19,6 @@ jobs:
       matrix:
         environment:
           - staging
-          - production
 
     steps:
       - name: print version
