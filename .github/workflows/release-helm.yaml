@@ -8,9 +8,14 @@ on:
       tag:
         type: string
         required: true
-      registry:
+      registry_uri:
         type: string
-        required: true
+        required: false
+        default: ghcr.io
+      registry_username:
+        type: string
+        required: false
+        default: property-xyz-bot
     secrets:
       GH_ORG_TOKEN:
         required: true
@@ -30,8 +35,8 @@ jobs:
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v2
         with:
-          registry: ${{  inputs.registry }}
-          username: ${{ github.actor }}
+          registry: ${{ inputs.registry_uri }}
+          username: ${{ inputs.registry_username }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push Docker image
