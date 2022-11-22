@@ -42,17 +42,19 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up JDK
-        uses: actions/setup-java@v3
+        uses: graalvm/setup-graalvm@v1
         with:
+          version: '22.3.0'
           java-version: '17'
-          distribution: temurin
-          cache: 'maven'
+          components: 'native-image'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          native-image-job-reports: 'true'
 
       - name: Build application
         run: |
           ./mvnw  versions:set -DnewVersion=${{ steps.tag_version.outputs.new_version }}
           if [[ ${{ inputs.isNative }} = true ]]; then
-           ./mvnw clean package -Pnative -Dquarkus.native.container-build=true
+           ./mvnw clean package -Pnative
           else
            ./mvnw clean package
           fi
