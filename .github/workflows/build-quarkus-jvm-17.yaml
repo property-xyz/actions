@@ -48,7 +48,6 @@ jobs:
           java-version: '17'
           components: 'native-image'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          native-image-job-reports: 'true'
 
       - name: Build application
         run: |
