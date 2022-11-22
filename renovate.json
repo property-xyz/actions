@@ -1,0 +1,14 @@
+{
+  "extends": [
+    "config:base",
+      ":pinVersions",
+      ":separateMultipleMajorReleases",
+      ":combinePatchMinorReleases",
+      ":ignoreModulesAndTests",
+      ":automergePatch",
+      ":automergeMinor",
+      ":skipStatusChecks",
+      ":pinSkipCi",
+      "group:allNonMajor"
+  ]
+}
