@@ -47,7 +47,7 @@ jobs:
           version: '22.3.0'
           java-version: '17'
           components: 'native-image'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GH_ORG_TOKEN }}
 
       - name: Build application
         run: |
