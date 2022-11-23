@@ -51,7 +51,7 @@ jobs:
 
       - name: Build application
         run: |
-          ./mvnw  versions:set -DnewVersion=${{ steps.tag_version.outputs.new_version }} -s maven-settings.xml
+          ./mvnw  versions:set -DnewVersion=${{ steps.tag_version.outputs.new_version }} -s ${{ secrets.MVN_SETTINGS }}
           if [[ ${{ inputs.isNative }} = true ]]; then
            ./mvnw clean package -Pnative
           else
