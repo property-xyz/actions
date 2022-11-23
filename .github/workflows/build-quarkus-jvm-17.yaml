@@ -54,9 +54,8 @@ jobs:
         with:
            servers: |
              [{
-               "id": "github",
                "username": "${{ secrets.XYZ_BOT_USERNAME }}",
-               "password": "${{ secrets.XYZ_PACKAGE_READ_TOKEN }}"
+               "password": "${{ secrets.XYZ_BOT_TOKEN }}"
              }]
 
       - name: Build application
