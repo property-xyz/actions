@@ -51,6 +51,14 @@ jobs:
 
       - name: Set up maven context
         uses: s4u/maven-settings-action@v2.8.0
+        with:
+          githubServer: false
+          servers: |
+             [{
+               "id": github
+               "username": "${{ secrets.XYZ_BOT_USERNAME }}",
+               "password": "${{ secrets.XYZ_BOT_TOKEN }}"
+             }]
 
       - name: Build application
         run: |
