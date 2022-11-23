@@ -55,7 +55,7 @@ jobs:
           githubServer: false
           servers: |
              [{
-               "id": "github"
+               "id": "github",
                "username": "${{ secrets.XYZ_BOT_USERNAME }}",
                "password": "${{ secrets.XYZ_BOT_TOKEN }}"
              }]
