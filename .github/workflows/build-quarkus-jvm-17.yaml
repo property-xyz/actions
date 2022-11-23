@@ -49,9 +49,19 @@ jobs:
           components: 'native-image'
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Set up maven context
+        uses: s4u/maven-settings-action@v2.8.0
+        with:
+           servers: |
+             [{
+               "id": "github",
+               "username": "${{ secrets.XYZ_BOT_USERNAME }}",
+               "password": "${{ secrets.XYZ_PACKAGE_READ_TOKEN }}"
+             }]
+
       - name: Build application
         run: |
-          ./mvnw  versions:set -DnewVersion=${{ steps.tag_version.outputs.new_version }} -s ${{ secrets.MVN_SETTINGS }}
+          ./mvnw  versions:set -DnewVersion=${{ steps.tag_version.outputs.new_version }} 
           if [[ ${{ inputs.isNative }} = true ]]; then
            ./mvnw clean package -Pnative
           else
