@@ -48,6 +48,7 @@ jobs:
           java-version: '17'
           components: 'native-image'
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          cache: 'maven'
 
       - name: Set up maven context
         uses: s4u/maven-settings-action@v2.8.0
