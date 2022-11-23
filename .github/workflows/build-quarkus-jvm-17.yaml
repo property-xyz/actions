@@ -51,11 +51,11 @@ jobs:
 
       - name: Build application
         run: |
-          ./mvnw  versions:set -DnewVersion=${{ steps.tag_version.outputs.new_version }} -s $GITHUB_WORKSPACE/.github/workflows/maven-settings.xml
+          ./mvnw  versions:set -DnewVersion=${{ steps.tag_version.outputs.new_version }} -s maven-settings.xml
           if [[ ${{ inputs.isNative }} = true ]]; then
            ./mvnw clean package -Pnative
           else
-           ./mvnw clean package -s $GITHUB_WORKSPACE/.github/workflows/maven-settings.xml
+           ./mvnw clean package -s maven-settings.xml
           fi
 
       - uses: actions/upload-artifact@v3
