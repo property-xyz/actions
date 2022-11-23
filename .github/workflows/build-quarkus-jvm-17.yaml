@@ -47,15 +47,15 @@ jobs:
           version: '22.3.0'
           java-version: '17'
           components: 'native-image'
-          github-token: ${{ secrets.GH_ORG_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build application
         run: |
-          ./mvnw  versions:set -DnewVersion=${{ steps.tag_version.outputs.new_version }}
+          ./mvnw  versions:set -DnewVersion=${{ steps.tag_version.outputs.new_version }} -s $GITHUB_WORKSPACE/.github/workflows/maven-settings.xml
           if [[ ${{ inputs.isNative }} = true ]]; then
            ./mvnw clean package -Pnative
           else
-           ./mvnw clean package
+           ./mvnw clean package -s $GITHUB_WORKSPACE/.github/workflows/maven-settings.xml
           fi
 
       - uses: actions/upload-artifact@v3
