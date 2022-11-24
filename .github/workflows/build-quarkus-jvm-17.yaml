@@ -65,9 +65,9 @@ jobs:
         run: |
           ./mvnw  versions:set -DnewVersion=${{ steps.tag_version.outputs.new_version }} 
           if [[ ${{ inputs.isNative }} = true ]]; then
-           ./mvnw clean package -Pnative
+           mvn clean package -Pnative
           else
-           ./mvnw clean package -s maven-settings.xml
+           mvn clean package -s maven-settings.xml
           fi
 
       - uses: actions/upload-artifact@v3
