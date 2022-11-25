@@ -67,7 +67,7 @@ jobs:
           if [[ ${{ inputs.isNative }} = true ]]; then
            mvn clean package -Pnative
           else
-           mvn clean package -s maven-settings.xml
+           mvn clean package
           fi
 
       - uses: actions/upload-artifact@v3
