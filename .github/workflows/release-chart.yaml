@@ -79,7 +79,7 @@ jobs:
           cmd: yq -i '.version = "${{ inputs.version }}"' charts/${{ github.event.repository.name }}/Chart.yaml
 
       - name: Release helm chart
-        uses: stefanprodan/helm-gh-pages@master
+        uses: stefanprodan/helm-gh-pages@v1.7.0
         with:
           repository: platform-helm-charts
           token: ${{ secrets.GH_ORG_TOKEN }}
