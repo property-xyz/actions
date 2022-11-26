@@ -35,7 +35,7 @@ jobs:
         uses: actions/checkout@v3
 
       - uses: actions/download-artifact@v3
-        if: ${{ inputs.dockerFile_path }} == ''
+        if: ${{ inputs.dockerFile_path }} == 'test'
         with:
           name: built-application
           path: target/
