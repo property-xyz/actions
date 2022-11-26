@@ -4,13 +4,13 @@ on:
     outputs:
       version:
         description: "The artifacts next version"
-        value: ${{ jobs.build.outputs.version }}
+        value: ${{ jobs.next-release.outputs.version }}
       tag:
         description: "The artifacts next tag"
-        value: ${{ jobs.build.outputs.tag }}
+        value: ${{ jobs.next-release.outputs.tag }}
 
 jobs:
-  prepare-next-release:
+  next-release:
     runs-on: ubuntu-latest
 
     outputs:
