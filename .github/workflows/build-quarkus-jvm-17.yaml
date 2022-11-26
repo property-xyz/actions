@@ -28,9 +28,10 @@ jobs:
           fetch-depth: 0
 
       - name: Run check style
-        uses: nikitasavinov/checkstyle-action@master
+        uses: axel-op/googlejavaformat-action@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          args: "--skip-sorting-imports --replace"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Bump version and push tag
         id: tag_version
