@@ -5,13 +5,15 @@ on:
       isNative:
         type: boolean
         required: true
-        default: true
       version:
         type: string
         required: true
       tag:
         type: string
         required: true
+      dockerFile_path:
+        type: string
+        required: false
       registry:
         type: string
         default: 'ghcr.io'
@@ -51,6 +53,8 @@ jobs:
         run: |
           if [[ ${{ inputs.isNative }} = true ]]; then
            echo "DOCKERFILE_PATH=src/main/docker/Dockerfile.native-micro" >> $GITHUB_ENV
+          elif [[ ! -z ${{ inputs.dockerFile_path }} ]]; then
+           echo "DOCKERFILE_PATH=${{ inputs.dockerFile_path }}" >> $GITHUB_ENV
           else
            echo "DOCKERFILE_PATH=src/main/docker/Dockerfile.jvm" >> $GITHUB_ENV
           fi
