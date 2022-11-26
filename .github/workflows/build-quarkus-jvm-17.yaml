@@ -30,8 +30,7 @@ jobs:
       - name: Run check style
         uses: axel-op/googlejavaformat-action@v3
         with:
-          args: "--skip-sorting-imports --replace"
-          github-token: ${{ secrets.GH_ORG_TOKEN }}
+          args: "--dry-run"
 
       - name: Bump version and push tag
         id: tag_version
