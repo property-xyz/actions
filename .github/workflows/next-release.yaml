@@ -10,7 +10,7 @@ on:
         value: ${{ jobs.build.outputs.tag }}
 
 jobs:
-  build:
+  prepare-next-release:
     runs-on: ubuntu-latest
 
     outputs:
