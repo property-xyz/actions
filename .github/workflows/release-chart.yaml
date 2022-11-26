@@ -38,8 +38,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - uses: actions/download-artifact@v3
-        if: ${{ inputs.skip_artifacts_download }} != 'true'
+      - name: Download artifacts
+        if: ${{ inputs.skip_artifacts_download }} == false
+        uses: actions/download-artifact@v3
         with:
           name: built-application
           path: target/
