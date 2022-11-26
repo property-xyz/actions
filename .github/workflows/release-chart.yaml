@@ -35,10 +35,10 @@ jobs:
         uses: actions/checkout@v3
 
       - uses: actions/download-artifact@v3
+        if: ${{ inputs.dockerFile_path }} == 0
         with:
           name: built-application
           path: target/
-        if: ${{ inputs.dockerFile_path }} == ''
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
