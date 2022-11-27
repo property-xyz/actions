@@ -18,7 +18,7 @@ on:
         required: false
     secrets:
       GH_ORG_TOKEN:
-        required: true
+        required: false
 jobs:
   release:
     runs-on: ubuntu-latest
