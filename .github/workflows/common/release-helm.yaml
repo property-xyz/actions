@@ -1,0 +1,51 @@
+name: release-helm
+on:
+  workflow_call:
+    inputs:
+      version:
+        type: string
+        required: true
+      tag:
+        type: string
+        required: true
+      registry:
+        type: string
+        default: 'ghcr.io'
+        required: false
+      registry_username:
+        type: string
+        default: 'property-xyz-bot'
+        required: false
+    secrets:
+      GH_ORG_TOKEN:
+        required: true
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Update image tag in helm values
+        uses: mikefarah/yq@master
+        with:
+          cmd: yq -i '.image.tag = "${{ inputs.tag }}"' charts/${{ github.event.repository.name }}/values.yaml
+
+      - name: Update repository  in helm values
+        uses: mikefarah/yq@master
+        with:
+          cmd: yq -i '.image.repository = "${{ inputs.registry }}/${{ github.repository }}"' charts/${{ github.event.repository.name }}/values.yaml
+
+      - name: Update version in helm chart
+        uses: mikefarah/yq@master
+        with:
+          cmd: yq -i '.version = "${{ inputs.version }}"' charts/${{ github.event.repository.name }}/Chart.yaml
+
+      - name: Release helm chart
+        uses: stefanprodan/helm-gh-pages@v1.7.0
+        with:
+          repository: platform-helm-charts
+          token: ${{ secrets.GH_ORG_TOKEN }}
+          charts_url: https://property-xyz.github.io/platform-helm-charts/
