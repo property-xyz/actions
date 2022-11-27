@@ -42,7 +42,7 @@ jobs:
         uses: FerLuisxd/create-npmrc@master
         with:
           org_name: property-xyz
-          auth_token: ${{ secrets.XYZ_PACKAGE_READ_TOKEN }}
+          auth_token: ${{ secrets.GH_ORG_TOKEN }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
