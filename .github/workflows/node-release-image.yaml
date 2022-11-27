@@ -8,6 +8,14 @@ on:
       dockerFile_path:
         type: string
         required: false
+      registry:
+        type: string
+        default: 'ghcr.io'
+        required: false
+      registry_username:
+        type: string
+        default: 'property-xyz-bot'
+        required: false
 jobs:
   release:
     runs-on: ubuntu-latest
