@@ -16,9 +16,7 @@ on:
         type: string
         default: 'property-xyz-bot'
         required: false
-    secrets:
-      GH_ORG_TOKEN:
-        required: false
+
 jobs:
   release:
     runs-on: ubuntu-latest
