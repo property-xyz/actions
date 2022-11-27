@@ -39,7 +39,9 @@ jobs:
         run: echo "DOCKERFILE_PATH=${{ inputs.dockerFile_path }}" >> $GITHUB_ENV
 
       - name: Set .npmrc token
-        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.XYZ_PACKAGE_READ_TOKEN }}" >> .npmrc
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.XYZ_PACKAGE_READ_TOKEN }}" >> .npmrc
+          cat .npmrc
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
