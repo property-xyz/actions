@@ -1,4 +1,4 @@
-name: release-helm
+name: release-chart
 on:
   workflow_call:
     inputs:
