@@ -57,7 +57,7 @@ jobs:
 
       - name: Set Docker file path
         run: |
-          if [[ ${{ inputs.isNative }} = true ]]; then
+          if [[ ${{ inputs.isNative }} ]]; then
            echo "DOCKERFILE_PATH=src/main/docker/Dockerfile.native-micro" >> $GITHUB_ENV
           elif [[ ! -z ${{ inputs.dockerFile_path }} ]]; then
            echo "DOCKERFILE_PATH=${{ inputs.dockerFile_path }}" >> $GITHUB_ENV
