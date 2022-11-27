@@ -38,10 +38,11 @@ jobs:
       - name: Set Docker file path
         run: echo "DOCKERFILE_PATH=${{ inputs.dockerFile_path }}" >> $GITHUB_ENV
 
-      - name: Set .npmrc token
-        run: |
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.XYZ_PACKAGE_READ_TOKEN }}" >> .npmrc
-          cat .npmrc
+      - name: Create a .npmrc file for the github private repository
+        uses: FerLuisxd/create-npmrc@4
+        with:
+          org_name: property-xyz
+          auth_token: ${{ secrets.XYZ_PACKAGE_READ_TOKEN }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
