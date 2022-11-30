@@ -11,10 +11,6 @@ on:
       tag:
         type: string
         required: true
-      skip_artifacts_download:
-        type: boolean
-        required: false
-        default: false
       dockerFile_path:
         type: string
         required: false
@@ -28,7 +24,6 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Download artifacts
-        if:  inputs.skip_artifacts_download == false
         uses: actions/download-artifact@v3
         with:
           name: built-application
@@ -48,8 +43,6 @@ jobs:
         run: |
           if [[ ${{ inputs.isNative }} == true ]]; then
            echo "DOCKERFILE_PATH=src/main/docker/Dockerfile.native-micro" >> $GITHUB_ENV
-          elif [[ -n "${{ inputs.dockerFile_path }}" ]]; then
-           echo "DOCKERFILE_PATH=${{ inputs.dockerFile_path }}" >> $GITHUB_ENV
           else
            echo "DOCKERFILE_PATH=src/main/docker/Dockerfile.jvm" >> $GITHUB_ENV
           fi
