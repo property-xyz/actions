@@ -8,8 +8,13 @@ on:
       tag:
         type: string
         required: true
-      dockerFile_path:
+      registry:
         type: string
+        default: 'ghcr.io'
+        required: false
+      registry_username:
+        type: string
+        default: 'property-xyz-bot'
         required: false
 jobs:
   release:
