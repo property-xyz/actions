@@ -5,9 +5,6 @@ on:
       isNative:
         type: boolean
         required: true
-      version:
-        type: string
-        required: true
       tag:
         type: string
         required: true
