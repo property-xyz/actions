@@ -5,6 +5,9 @@ on:
       version:
         type: string
         required: true
+      namespace:
+        type: string
+        required: false
     secrets:
       GH_ORG_TOKEN:
         required: true
@@ -28,7 +31,7 @@ jobs:
       - name: Update chart version
         uses: mikefarah/yq@master
         with:
-          cmd: yq -i '.helmCharts[0].version= "${{ inputs.version }}"' apps/${{ matrix.environment }}/apps/${{ github.event.repository.name }}/kustomization.yaml
+          cmd: yq -i '.helmCharts[0].version= "${{ inputs.version }}"' apps/${{ inputs.namespace || matrix.environment }}/apps/${{ github.event.repository.name }}/kustomization.yaml
 
       - name: Create a pull request
         uses: peter-evans/create-pull-request@v4
