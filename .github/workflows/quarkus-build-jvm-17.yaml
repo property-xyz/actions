@@ -57,7 +57,7 @@ jobs:
         run: |
           mvn  versions:set -DnewVersion=${{ steps.tag_version.outputs.new_version }} 
           if [[ ${{ inputs.isNative }} = true ]]; then
-           mvn clean package -Pnative
+           mvn clean package -Pnative -Dquarkus.native.container-build=true
           else
            mvn clean package
           fi
