@@ -45,7 +45,7 @@ jobs:
           auth_token: ${{ secrets.GH_ORG_TOKEN }}
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           context: .
           file: ${{ env.DOCKERFILE_PATH }}
