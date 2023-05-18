@@ -19,7 +19,7 @@ jobs:
       matrix:
         environment:
           - staging
-          - production
+          - current-prod
 
     steps:
 
