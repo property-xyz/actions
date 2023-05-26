@@ -45,3 +45,5 @@ jobs:
           file: ${{ env.DOCKERFILE_PATH }}
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ inputs.registry }}/${{ github.repository }}:${{ inputs.tag }}
+          build-args: |
+            NEXT_PUBLIC_XYZ_GOOGLE_MAPS_API_KEY=${{ secrets.XYZ_GOOGLE_MAPS_API_KEY }}
