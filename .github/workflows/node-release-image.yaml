@@ -43,7 +43,13 @@ jobs:
         with:
           org_name: property-xyz
           auth_token: ${{ secrets.GH_ORG_TOKEN }}
-
+          
+      - name: Create .env file
+        uses: SpicyPizza/create-envfile@v1.3.0
+        with:
+          file_name: .env.local
+          envkey_NEXT_PUBLIC_XYZ_GOOGLE_MAPS_API_KEY: ${{ secrets.NEXT_PUBLIC_XYZ_GOOGLE_MAPS_API_KEY }}
+        
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
