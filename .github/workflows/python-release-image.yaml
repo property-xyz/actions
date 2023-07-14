@@ -14,7 +14,9 @@ on:
       version:
         description: "The artifacts next version"
         value: ${{ jobs.release.outputs.version }}
-        tag: ${{ jobs.release.outputs.tag }}
+      tag:
+        description: "The artifacts next tag"
+        value: ${{ jobs.release.outputs.tag }}
 jobs:
   release:
     runs-on: ubuntu-latest
