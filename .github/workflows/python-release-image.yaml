@@ -16,6 +16,10 @@ on:
         type: string
         default: 'property-xyz-bot'
         required: false
+    outputs:
+        version:
+          description: "The artifacts next version"
+          value: ${{ jobs.bumper.outputs.new_version }}
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -24,6 +28,10 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Run bumper
+        id: bumper
+        uses: tomerfi/version-bumper-action@1.2.2
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
