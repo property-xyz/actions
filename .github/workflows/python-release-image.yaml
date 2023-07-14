@@ -13,10 +13,12 @@ on:
     outputs:
       version:
         description: "The artifacts next version"
-        value: ${{ jobs.bumper.outputs.new_version }}
+        value: ${{ jobs.release.outputs.version }}
 jobs:
   release:
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.bumper.outputs.new_version }}
 
     steps:
 
