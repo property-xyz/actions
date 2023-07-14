@@ -2,12 +2,6 @@ name: release-image
 on:
   workflow_call:
     inputs:
-      isNative:
-        type: boolean
-        required: true
-      tag:
-        type: string
-        required: true
       registry:
         type: string
         default: 'ghcr.io'
@@ -49,4 +43,4 @@ jobs:
           context: .
           file: ${{ env.DOCKERFILE_PATH }}
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ inputs.registry }}/${{ github.repository }}:${{ inputs.tag }}
+          tags: ${{ inputs.registry }}/${{ github.repository }}:${{ github.sha }}
