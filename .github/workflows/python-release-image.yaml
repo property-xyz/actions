@@ -14,11 +14,13 @@ on:
       version:
         description: "The artifacts next version"
         value: ${{ jobs.release.outputs.version }}
+        tag: ${{ jobs.release.outputs.tag }}
 jobs:
   release:
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.bumper.outputs.new_version }}
+      tag: ${{ inputs.registry }}/${{ github.repository }}:${{ steps.bumper.outputs.new_version }}
 
     steps:
 
