@@ -49,8 +49,7 @@ jobs:
         with:
           file_name: .env.local
           envkey_NEXT_PUBLIC_XYZ_GOOGLE_MAPS_API_KEY: ${{ secrets.NEXT_PUBLIC_XYZ_GOOGLE_MAPS_API_KEY }}
-          envkey_NEXT_PUBLIC_ENV: ${{ secrets.NEXT_PUBLIC_ENV }}
-        
+          
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
