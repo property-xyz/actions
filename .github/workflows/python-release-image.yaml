@@ -46,7 +46,7 @@ jobs:
           password: ${{ secrets.XYZ_BOT_TOKEN }}
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v5
         with:
           context: .
           file: ${{ env.DOCKERFILE_PATH }}
