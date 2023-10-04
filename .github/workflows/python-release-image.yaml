@@ -33,7 +33,7 @@ jobs:
         uses: chartboost/ruff-action@v1
         with:
           version: 0.0.292
-          src: 'src'
+          src: 'src test'
 
       - name: Bump version and push tag
         id: tag_version
