@@ -29,6 +29,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: linter
+        uses: chartboost/ruff-action@v1
+        with:
+          version: 0.0.292
+          src: 'src'
+
       - name: Bump version and push tag
         id: tag_version
         uses: mathieudutour/github-tag-action@v6.1
