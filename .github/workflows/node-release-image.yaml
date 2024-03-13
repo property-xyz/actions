@@ -45,7 +45,7 @@ jobs:
           auth_token: ${{ secrets.GH_ORG_TOKEN }}
           
       - name: Create .env file
-        uses: SpicyPizza/create-envfile@v2.0.2
+        uses: SpicyPizza/create-envfile@v2.0.3
         with:
           file_name: .env.local
           envkey_NEXT_PUBLIC_XYZ_GOOGLE_MAPS_API_KEY: ${{ secrets.NEXT_PUBLIC_XYZ_GOOGLE_MAPS_API_KEY }}
