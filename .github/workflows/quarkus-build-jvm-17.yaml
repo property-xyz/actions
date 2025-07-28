@@ -60,7 +60,7 @@ jobs:
            mvn clean package 
           fi
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: built-application
           path: target/
