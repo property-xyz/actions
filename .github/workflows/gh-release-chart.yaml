@@ -24,7 +24,7 @@ jobs:
     steps:
 
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.3.1
 
       - name: Update image tag in helm values
         uses: mikefarah/yq@master

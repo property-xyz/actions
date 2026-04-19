@@ -24,7 +24,7 @@ jobs:
     steps:
 
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.3.1
         with:
           repository: property-xyz/linode-platform-${{ matrix.environment }}-cluster-argo
           token: ${{ secrets.GH_ORG_TOKEN }}
@@ -35,7 +35,7 @@ jobs:
           cmd: yq -i '.helmCharts[0].version= "${{ inputs.version }}"' apps/${{ inputs.namespace || matrix.environment }}/apps/${{ github.event.repository.name }}/kustomization.yaml
 
       - name: Create a pull request
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v5.0.3
         with:
           token: ${{ secrets.GH_ORG_TOKEN }}
           title: Promote ${{ github.event.repository.name }} to version v${{ inputs.version }}
